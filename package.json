@@ -1,0 +1,26 @@
+{
+  "name": "clack-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint":"eslint --fix src/**/*.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "boom": "^7.3.0",
+    "cors": "^2.8.5",
+    "fastify": "^3.9.2",
+    "fastify-autoload": "^3.4.0",
+    "fastify-express": "^0.3.2",
+    "fluent-schema": "^1.1.0",
+    "lodash": "^4.17.20",
+    "pino": "^6.10.0",
+    "pino-pretty": "^4.3.0",
+    "uuidv4": "^6.2.6"
+  },
+  "devDependencies": {
+    "eslint": "^7.17.0"
+  }
+}
