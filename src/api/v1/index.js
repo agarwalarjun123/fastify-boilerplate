@@ -2,7 +2,7 @@ const _ = require("lodash")
 const data = {
 	auth: {
 		prefix: "/auth",
-		routes: require("./authentication.route"),
+		routes: require("./authentication/authentication.route"),
 	},
 }
 
