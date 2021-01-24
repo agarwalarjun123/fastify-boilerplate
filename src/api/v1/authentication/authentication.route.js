@@ -21,6 +21,7 @@ module.exports = (fastify, opts, done) => {
 			handler: controller.signUpController,
 		},
 	]
+	fastify.decorateRequest("user", null)
 	fastify.addHook("preHandler", authenticationUtil.authenticateUser())
 	routes.forEach(route => fastify.route(route))
 	done()
