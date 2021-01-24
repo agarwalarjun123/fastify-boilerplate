@@ -13,6 +13,14 @@ const signUpSchema = {
 		.options({ allowUnknown: false }),
 }
 
+const schema = {
+	body: Joi.object({
+		name: Joi.string().required(),
+	})
+		.required()
+		.options({ allowUnknown: false }),
+}
 module.exports = {
 	signUpSchema,
+	schema,
 }
