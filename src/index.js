@@ -1,9 +1,10 @@
 const appinsights = require("./config/appinsights")
+const setupModels = require("./model")
 const bootstrap = async () => {
 	// setting up server.
 	const server = await require("./app")()
-	const { start } = await appinsights(server)
-	start()
+	// register appinsights
+	await server.register(appinsights)
 	const mongoose = require("mongoose")
 
 	mongoose.connection.on("disconnected", () => {
@@ -30,11 +31,8 @@ const bootstrap = async () => {
 			useFindAndModify: false,
 		})
 		server.log.info("Connected to MongoDB")
-		await server.listen(server.config.app.PORT, () =>
-			server.log.info(
-				`server is running on port ${server.config.app.PORT}`,
-			),
-		)
+		await server.register(setupModels)
+		await server.listen(server.config.app.PORT)
 	} catch (err) {
 		server.log.error(err)
 		process.exit(1)

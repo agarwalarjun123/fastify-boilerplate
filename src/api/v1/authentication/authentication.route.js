@@ -11,6 +11,7 @@ module.exports = (fastify, opts, done) => {
 			url: "/sign-up",
 			schema: authenticationSchema.signUpSchema,
 			validatorCompiler: validate,
+			preHandler: [],
 			handler: controller.signUpController,
 		},
 		{
@@ -18,6 +19,7 @@ module.exports = (fastify, opts, done) => {
 			url: "/signin",
 			schema: authenticationSchema.schema,
 			validatorCompiler: validate,
+			preHandler: [],
 			handler: controller.signUpController,
 		},
 	]
