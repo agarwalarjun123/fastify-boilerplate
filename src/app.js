@@ -11,13 +11,13 @@ const fastifyExpressPlugin = require("fastify-express")
 const createServer = async () => {
 	try {
 		fastify = fastify(serverOptions)
+		// register config plugin
+		await fastify.register(configPlugin)
 		// register fastify plugins
 		await fastify.register(fastifyExpressPlugin)
 		// registers middlewares
 		fastify.use(cors())
 		fastify.use(helmet())
-		// register config plugin
-		await fastify.register(configPlugin)
 		// set Error Handler
 		await fastify.setErrorHandler(errorHandler)
 		await fastify.setNotFoundHandler(function (req, reply) {

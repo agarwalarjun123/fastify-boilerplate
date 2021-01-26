@@ -12,6 +12,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@hapi/boom": "^9.1.1",
+		"applicationinsights": "^1.8.9",
 		"cors": "^2.8.5",
 		"fastify": "^3.9.2",
 		"fastify-autoload": "^3.4.0",

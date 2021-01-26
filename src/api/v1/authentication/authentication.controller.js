@@ -1,7 +1,12 @@
+const authenticationService = require("./authentication.service")
+
 // eslint-disable-next-line no-unused-vars
-module.exports = _ => {
+module.exports = fastify => {
+	const service = authenticationService(fastify)
 	const signUpController = async (req, res) => {
-		return res.json(req.user)
+		const ret_value = await service.loginService()
+		await fastify.appinsights.trackEvent("name", { data: "name" })
+		return res.json(ret_value)
 	}
 	return {
 		signUpController,

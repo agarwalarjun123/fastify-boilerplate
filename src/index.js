@@ -1,5 +1,9 @@
+const appinsights = require("./config/appinsights")
 const bootstrap = async () => {
+	// setting up server.
 	const server = await require("./app")()
+	const { start } = await appinsights(server)
+	start()
 	const mongoose = require("mongoose")
 
 	mongoose.connection.on("disconnected", () => {

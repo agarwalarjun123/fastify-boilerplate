@@ -5,6 +5,7 @@ const configPlugin = async function (fastify) {
 			NODE_ENV: process.env.NODE_ENV,
 			LOG_LEVEL: process.env.LOG_LEVEL,
 			PORT: process.env.PORT || 4000,
+			APPLICATION_INSIGHTS: process.env.APPLICATION_INSIGHTS,
 		},
 		db: {
 			MONGODB_URL: process.env.MONGODB_URL,
