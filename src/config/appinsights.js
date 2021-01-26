@@ -1,7 +1,7 @@
 const appinsights = require("applicationinsights")
 const fp = require("fastify-plugin")
 let client
-module.exports = fp(async fastify => {
+module.exports = fp(async (fastify) => {
 	const trackEvent = (eventName, eventProperties) => {
 		if (client) {
 			client.trackEvent({ name: eventName, properties: eventProperties })

@@ -25,6 +25,6 @@ module.exports = (fastify, opts, done) => {
 	]
 	fastify.decorateRequest("user", null)
 	fastify.addHook("preHandler", authenticationUtil.authenticateUser())
-	routes.forEach(route => fastify.route(route))
+	routes.forEach((route) => fastify.route(route))
 	done()
 }

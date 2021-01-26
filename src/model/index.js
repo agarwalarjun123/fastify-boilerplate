@@ -7,7 +7,7 @@ const setupModels = fp(async function (fastify) {
 	if (mongoose.connection.readyState == 1) {
 		let readdirlist = fs.readdirSync("./src/model")
 		let schema
-		readdirlist.forEach(file => {
+		readdirlist.forEach((file) => {
 			if (file !== "index.js") {
 				schema = require(`./${file}`)
 				file = file.replace(".js", "")

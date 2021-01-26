@@ -7,8 +7,8 @@
 		"lint:fix": "eslint --fix src/**/*.js",
 		"start:local": "env-cmd -f .env nodemon src/",
 		"start": "env-cmd -f .env node src/",
-		"precommit": "run-s lint:fix format",
-		"format": "prettier --write 'src/**/*.js' 'tests/**/*.js'"
+		"precommit": "run-s lint:fix format & git add .",
+		"format": "prettier --write 'src/**/*.js'"
 	},
 	"author": "",
 	"license": "ISC",
