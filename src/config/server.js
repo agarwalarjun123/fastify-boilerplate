@@ -1,8 +1,9 @@
-const loggerOptions = require("./logger")
-const { v4: uuidv4 } = require("uuid")
+import loggerOptions from "./logger.js"
+import { v4 } from "uuid"
 
-module.exports = {
+let serverOptions = {
 	logger: loggerOptions,
-	genReqId: uuidv4,
+	genReqId: v4,
 	ignoreTrailingSlash: true,
 }
+export default serverOptions

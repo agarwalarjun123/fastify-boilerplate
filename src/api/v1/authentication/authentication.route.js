@@ -1,9 +1,9 @@
-const validate = require("../../../common/validation.util")
-const authenticationController = require("./authentication.controller")
-const authenticationSchema = require("./authentication.schema")
-const authenticationUtil = require("../../../common/authentication.util")
+import validate from "../../../common/validation.util.js"
+import authenticationController from "./authentication.controller.js"
+import * as authenticationSchema from "./authentication.schema.js"
+import * as authenticationUtil from "../../../common/authentication.util.js"
 
-module.exports = (fastify, opts, done) => {
+export default async (fastify, opts, done) => {
 	const controller = authenticationController(fastify, opts, done)
 	const routes = [
 		{
@@ -25,6 +25,10 @@ module.exports = (fastify, opts, done) => {
 	]
 	fastify.decorateRequest("user", null)
 	fastify.addHook("preHandler", authenticationUtil.authenticateUser())
-	routes.forEach((route) => fastify.route(route))
+	await Promise.all(
+		routes.map(async (route) => {
+			await fastify.route(route)
+		}),
+	)
 	done()
 }

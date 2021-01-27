@@ -1,11 +1,12 @@
-const appinsights = require("./config/appinsights")
-const setupModels = require("./model")
+import { insights } from "./config/appinsights.js"
+import { setupModels } from "./model/index.js"
+import mongoose from "mongoose"
 const bootstrap = async () => {
 	// setting up server.
-	const server = await require("./app")()
+	let server = await import("./app.js")
+	server = await server.createServer()
 	// register appinsights
-	await server.register(appinsights)
-	const mongoose = require("mongoose")
+	await server.register(insights)
 
 	mongoose.connection.on("disconnected", () => {
 		server.log.error("Disconnected")

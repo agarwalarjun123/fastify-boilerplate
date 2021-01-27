@@ -1,7 +1,7 @@
-const _ = require("lodash")
-const httpStatusCodes = require("http-status-codes")
+import _ from "lodash"
+import httpStatusCodes from "http-status-codes"
 
-module.exports = (error, req, res) => {
+const errorHandler = (error, req, res) => {
 	if (error && error.isBoom) {
 		return res.code(error.output.statusCode).send({
 			error: { message: error.output.payload.message },
@@ -25,3 +25,5 @@ module.exports = (error, req, res) => {
 		is_success: false,
 	})
 }
+
+export default errorHandler

@@ -1,6 +1,5 @@
-const Joi = require("joi")
-
-const signUpSchema = {
+import Joi from "joi"
+export const signUpSchema = {
 	query: Joi.object({
 		name: Joi.string().required(),
 	})
@@ -13,14 +12,10 @@ const signUpSchema = {
 		.options({ allowUnknown: false }),
 }
 
-const schema = {
+export const schema = {
 	body: Joi.object({
 		name: Joi.string().required(),
 	})
 		.required()
 		.options({ allowUnknown: false }),
-}
-module.exports = {
-	signUpSchema,
-	schema,
 }

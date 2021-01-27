@@ -1,14 +1,17 @@
-const _ = require("lodash")
+import _ from "lodash"
 const data = {
 	auth: {
 		prefix: "/auth",
-		routes: require("./authentication/authentication.route"),
+		routes: "./authentication/authentication.route.js",
 	},
 }
 
-module.exports = async (fastify, opts, done) => {
-	_.each(data, ({ prefix, routes }) => {
-		fastify.register(routes, { prefix })
-	})
+export default async (fastify, opts, done) => {
+	await Promise.all(
+		_.map(data, async ({ prefix, routes }) => {
+			const route = await import(routes)
+			await fastify.register(route, { prefix })
+		}),
+	)
 	done()
 }

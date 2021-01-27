@@ -1,11 +1,15 @@
-const path = require("path")
-const routesMiddleware = function (fastify, opts, done) {
+import path from "path"
+export default async (fastify, opts, done) => {
 	const versions = ["v1"]
-	versions.forEach((version) => {
-		const routePath = path.join(__dirname, version)
-		const routes = require(routePath)
-		fastify.register(routes, { prefix: `/${version}` })
-	})
+	await Promise.all(
+		versions.map(async (version) => {
+			const url = new URL(import.meta.url)
+			const __dirname = path.dirname(url.pathname)
+			const routePath = path.join(__dirname, `${version}/index.js`)
+			const routes = await import(routePath)
+			await fastify.register(routes.default, { prefix: `/${version}` })
+		}),
+	)
+
 	done()
 }
-module.exports = routesMiddleware

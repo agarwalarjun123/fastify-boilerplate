@@ -1,7 +1,7 @@
-const boom = require("@hapi/boom")
-const _ = require("lodash")
-const { v4: uuidv4 } = require("uuid")
-const authenticateUser = () => (req, res, done) => {
+import boom from "@hapi/boom"
+import _ from "lodash"
+import { v4 } from "uuid"
+export const authenticateUser = () => (req, res, done) => {
 	const authorizationHeader = req.headers["x-authorization"]
 	if (!_.includes(authorizationHeader, "Bearer")) {
 		throw boom.unauthorized("please login to continue.")
@@ -12,11 +12,8 @@ const authenticateUser = () => (req, res, done) => {
 	}
 	req.user = {
 		requestData: {
-			id: uuidv4(),
+			id: v4(),
 		},
 	}
 	done()
-}
-module.exports = {
-	authenticateUser,
 }

@@ -1,7 +1,7 @@
-const authenticationService = require("./authentication.service")
+import authenticationService from "./authentication.service.js"
 
 // eslint-disable-next-line no-unused-vars
-module.exports = (fastify) => {
+const authenticationController = (fastify) => {
 	const service = authenticationService(fastify)
 	const signUpController = async (req, res) => {
 		const ret_value = await service.loginService()
@@ -12,3 +12,4 @@ module.exports = (fastify) => {
 		signUpController,
 	}
 }
+export default authenticationController

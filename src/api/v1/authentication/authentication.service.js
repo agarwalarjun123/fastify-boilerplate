@@ -1,6 +1,6 @@
-module.exports = (fastify) => {
+export default (fastify) => {
 	const loginService = async () => {
-		console.log("data")
+		console.log("da")
 		const data = await fastify.models.schema.find()
 		return data
 	}

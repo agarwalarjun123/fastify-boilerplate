@@ -1,5 +1,5 @@
-const fp = require("fastify-plugin")
-const configPlugin = async function (fastify) {
+import fp from "fastify-plugin"
+export default fp(async (fastify) => {
 	const config = {
 		app: {
 			NODE_ENV: process.env.NODE_ENV,
@@ -12,6 +12,4 @@ const configPlugin = async function (fastify) {
 		},
 	}
 	await fastify.decorate("config", config)
-}
-
-module.exports = fp(configPlugin)
+})

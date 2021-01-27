@@ -1,16 +1,16 @@
-const cors = require("cors")
-let { fastify } = require("fastify")
-const serverOptions = require("./config/server")
-const helmet = require("helmet")
-const errorHandler = require("./config/error")
-const configPlugin = require("./config/config")
-const api = require("./api")
-const httpStatusCodes = require("http-status-codes")
-const fastifyExpressPlugin = require("fastify-express")
-
-const createServer = async () => {
+import cors from "cors"
+import { fastify as fastifyServer } from "fastify"
+import serverOptions from "./config/server.js"
+import helmet from "helmet"
+import errorHandler from "./config/error.js"
+import configPlugin from "./config/config.js"
+import api from "./api/index.js"
+import httpStatusCodes from "http-status-codes"
+import fastifyExpressPlugin from "fastify-express"
+let fastify
+export const createServer = async () => {
 	try {
-		fastify = fastify(serverOptions)
+		fastify = fastifyServer(serverOptions)
 		// register config plugin
 		await fastify.register(configPlugin)
 		// register fastify plugins
@@ -44,4 +44,3 @@ const createServer = async () => {
 		process.exit(1)
 	}
 }
-module.exports = createServer
